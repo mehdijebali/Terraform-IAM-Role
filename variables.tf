@@ -39,7 +39,7 @@ variable "ROLE_POLICY_NAME" {
 }
 
 variable "S3_BUCKET_NAME" {
-  default = "levelup-bucket-141"
+  default = "demo-terraform-bucket-mj"
 }
 
 variable "S3_BUCKET_ACL" {
