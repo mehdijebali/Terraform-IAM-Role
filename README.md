@@ -1,1 +1,1 @@
-# Provision EBS (Elastic Block Store) with Terraform
+# Provision IAM Role & Policy with Terraform
