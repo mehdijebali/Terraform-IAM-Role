@@ -1,6 +1,6 @@
 #Roles to access the AWS S3 Bucket
 resource "aws_iam_role" "s3-levelupbucket-role" {
-  name               = "s3-levelupbucket-role"
+  name               = var.ROLE_NAME
   assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
@@ -21,7 +21,7 @@ EOF
 
 #Policy to attach the S3 Bucket Role
 resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
-  name = "s3-levelupmybucket-role-policy"
+  name = var.ROLE_POLICY_NAME
   role = aws_iam_role.s3-levelupbucket-role.id
   policy = <<EOF
 {
@@ -45,6 +45,6 @@ EOF
 
 #Instance identifier
 resource "aws_iam_instance_profile" "s3-levelupbucket-role-instanceprofile" {
-  name = "s3-levelupbucket-role"
+  name = var.ROLE_NAME
   role = aws_iam_role.s3-levelupbucket-role.name
 }
