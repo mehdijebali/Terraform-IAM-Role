@@ -1,5 +1,5 @@
 # Provision IAM Role & Policy with Terraform
-In this demo, we will create an EC2 instance and S3 bucket. After that we will attach an IAM to the instance that allows to access the bucket.
+In this demo, we will create an EC2 instance and S3 bucket. After that we will attach an IAM role to the instance with a predifined policy that allows the access to the bucket.
 ## About IAM 
 An IAM role is an IAM identity that you can create in your account that has specific permissions. An IAM role is similar to an IAM user, in that it is an AWS identity with permission policies that determine what the identity can and cannot do in AWS. However, instead of being uniquely associated with one person, a role is intended to be assumable by anyone who needs it. Also, a role does not have standard long-term credentials such as a password or access keys associated with it. Instead, when you assume a role, it provides you with temporary security credentials for your role session.
 
@@ -7,7 +7,7 @@ You can use roles to delegate access to users, applications, or services that do
 ## Instructions
 1. Clone the project 
 ```
-git clone https://github.com/mehdijebali/Terraform-VPC.git
+git clone https://github.com/mehdijebali/Terraform-IAM-Role.git
 ```
 2. In the project root directory, create an SSH key and name it **levelup_key**
 ```
