@@ -22,14 +22,6 @@ variable "AVAILABILITY_ZONE" {
   default = "us-east-1a"
 }
 
-variable "EBS_SIZE" {
-  default = 5
-}
-
-variable "EBS_TYPE" {
-  default = "gp2"
-}
-
 variable "ROLE_NAME" {
   default = "s3-levelupbucket-role"
 }
