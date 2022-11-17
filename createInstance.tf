@@ -14,7 +14,7 @@ resource "aws_instance" "MyFirstInstnace" {
   iam_instance_profile = aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile.name
 
   tags = {
-    Name = "tf_instance"
+    Name = "${var.INSTANCE_NAME}"
   }
 }
 

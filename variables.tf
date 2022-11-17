@@ -37,3 +37,7 @@ variable "S3_BUCKET_NAME" {
 variable "S3_BUCKET_ACL" {
   default = "private"
 }
+
+variable "INSTANCE_NAME" {
+  default = "tf_instance"
+}
