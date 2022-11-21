@@ -41,3 +41,11 @@ variable "S3_BUCKET_ACL" {
 variable "INSTANCE_NAME" {
   default = "tf_instance"
 }
+
+variable "SG_NAME" {
+  default = "Allow_SSH"
+}
+
+variable "SG_DESCRIPTION" {
+  default = "Allow SSH Connection"
+}
