@@ -6,7 +6,7 @@ variable "AMI_ID" {
   default = "ami-09d3b3274b6c5d4aa"
 }
 
-variable "PATH_TO_PRIVATE_KEY" {
+variable "KEY_NAME" {
   default = "levelup_key"
 }
 
