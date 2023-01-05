@@ -6,6 +6,15 @@ data "aws_vpc" "default" {
   default = true
 } 
 
+data "aws_ami" "packer_ami" {
+  most_recent      = true
+  owners           = ["self"]
+
+  filter {
+    name   = "name"
+    values = ["s3-client-*"]
+  }
+}
 module "instance" {
   source = "./modules/instance"
 
