@@ -19,4 +19,6 @@ module "instance" {
   INSTANCE_NAME = var.INSTANCE_NAME
   AVAILABILITY_ZONE = var.AVAILABILITY_ZONE
   INSTANCE_PROFILE = aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile.name
+
+  depends_on = [aws_s3_bucket.levelup-s3bucket]
 }
