@@ -34,25 +34,9 @@ terraform apply
 ```
 7. After the creation is completed, SSH to the EC2 instance
 ```
-ssh ec2-user@<public_ip>
+ssh -i /path/to/private/key ec2-user@<public_ip>
 ```
-8. update apt packages
-```
-sudo apt-get update
-```
-9. Install pip
-```
-sudo apt-get install python-pip python-dev
-```
-10. install awscli 
-```
-pip install awscli
-```
-11. Create a simple text file
-```
-echo "test S3 upload" > myfile.txt
-```
-12. Copy the created file to S3 bucket
+8. Copy the created file to S3 bucket
 ```
 aws s3 cp myfile.txt s3://demo-terraform-bucket-mj/myfile.txt
 ```

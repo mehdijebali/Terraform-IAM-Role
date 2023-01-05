@@ -23,7 +23,7 @@ module "instance" {
   SG_VPC_ID = data.aws_vpc.default.id
   SG_NAME = var.SG_NAME
   SG_DESCRIPTION = var.SG_DESCRIPTION
-  AMI_ID = var.AMI_ID
+  AMI_ID = data.aws_ami.packer_ami.id
   INSTANCE_TYPE = var.INSTANCE_TYPE
   INSTANCE_NAME = var.INSTANCE_NAME
   AVAILABILITY_ZONE = var.AVAILABILITY_ZONE
