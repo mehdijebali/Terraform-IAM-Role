@@ -1,0 +1,11 @@
+---
+- hosts: all
+  become: true
+  
+  tasks:
+  - name: Install unzip
+    apt:
+      name: unzip
+      state: latest
+  
+  
