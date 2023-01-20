@@ -3,16 +3,21 @@
   become: true
   
   tasks:
+  - name: Install unzip
+    apt:
+      name: unzip
+      state: present
+
   - name: Download awscli 
-    uri:
-      url: 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip'
-      method: GET
-    register: result
+    get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=./awscliv2.zip
+    register: aws_cli_download
 
   - name: Unarchive a file with extra options
     unarchive:
-      src: ./awscli-exe-linux-x86_64.zip
-      dest: .
+      src: ./awscliv2.zip
+      dest: /
+    when: aws_cli_download.changed
+    register: aws_cli_unarchive
 
   - name: Install awscli
     command: ./aws/install
