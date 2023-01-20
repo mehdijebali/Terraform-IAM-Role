@@ -8,19 +8,21 @@
       name: unzip
       state: present
 
-  - name: Download awscli 
-    get_url: url=https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip dest=./awscliv2.zip
-    register: aws_cli_download
-
-  - name: Unarchive a file with extra options
+  - name: Download awscli installer
     unarchive:
-      src: ./awscliv2.zip
-      dest: /
-    when: aws_cli_download.changed
-    register: aws_cli_unarchive
+      src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+      dest: /tmp
+      remote_src: true
+      creates: /tmp/aws
+      mode: 0755
 
-  - name: Install awscli
-    command: ./aws/install
+
+  - name: Run the installer
+    command:
+    args:
+      cmd: /tmp/aws/install
+      creates: /usr/local/bin/aws
+    register: aws_install
 
   - name: Create test file
     command: echo "test S3 upload" > myfile.txt
