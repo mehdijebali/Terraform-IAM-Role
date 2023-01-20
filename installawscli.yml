@@ -16,8 +16,7 @@
       creates: /tmp/aws
       mode: 0755
 
-
-  - name: Run the installer
+  - name: Run installer
     command:
     args:
       cmd: /tmp/aws/install
