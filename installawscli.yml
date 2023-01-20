@@ -11,8 +11,8 @@
 
   - name: Unarchive a file with extra options
     unarchive:
-    src: ./awscli-exe-linux-x86_64.zip
-    dest: .
+      src: ./awscli-exe-linux-x86_64.zip
+      dest: .
 
   - name: Install awscli
     command: ./aws/install
