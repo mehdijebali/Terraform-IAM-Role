@@ -3,9 +3,20 @@
   become: true
   
   tasks:
-  - name: Install unzip
-    apt:
-      name: unzip
-      state: latest
-  
+  - name: Download awscli 
+    uri:
+      url: 'https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip'
+      method: GET
+    register: result
+
+  - name: Unarchive a file with extra options
+    unarchive:
+    src: ./awscli-exe-linux-x86_64.zip
+    dest: .
+
+  - name: Install awscli
+    command: ./aws/install
+
+  - name: Create test file
+    command: echo "test S3 upload" > myfile.txt
   
