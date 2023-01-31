@@ -33,4 +33,4 @@
     command: echo "test S3 upload" > myfile.txt
 
   - debug:
-    msg: "the value of myfile.txt is {{lookup('file', '/home/ubuntu/myfile.txt') }}"
+      msg: "the value of myfile.txt is {{lookup('file', '/home/ubuntu/myfile.txt') }}"
