@@ -23,6 +23,14 @@
       creates: /usr/local/bin/aws
     register: aws_install
 
+  - name: Check awscli version 
+    command: sudo aws --version
+    register: aws_version
+  - debug:
+      var: aws_version.stdout
+
   - name: Create test file
     command: echo "test S3 upload" > myfile.txt
+
+  
   
