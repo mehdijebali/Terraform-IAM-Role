@@ -31,6 +31,12 @@
 
   - name: Create test file
     command: echo "test S3 upload" > myfile.txt
+  
+  - name: Check test file creation 
+    command: sudo cat myfile.txt
+    register: myfile
+  - debug:
+      var: myfile.stdout
 
   
   
