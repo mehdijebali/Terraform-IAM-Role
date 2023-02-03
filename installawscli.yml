@@ -26,6 +26,7 @@
   - name: Check awscli version 
     command: sudo aws --version
     register: aws_version
+    when: aws_install.changed == true
   - debug:
       var: aws_version.stdout
 
