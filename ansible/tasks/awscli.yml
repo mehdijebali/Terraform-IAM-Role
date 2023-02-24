@@ -1,7 +1,7 @@
 ---
 - name: Download awscli installer
   unarchive:
-    src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    src: "{{awscli_url}}"
     dest: /tmp
     remote_src: true
     creates: /tmp/aws
