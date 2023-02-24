@@ -1,0 +1,12 @@
+---
+- name: Deploy awscli
+  hosts: all
+  become: true
+  
+  tasks:
+  - include_vars: ./vars/main.yml
+  - include_tasks: ./tasks/unzip.yml
+  - include_tasks: ./tasks/awscli.yml
+  - include_tasks: ./tasks/createfile.yml
+  - include_tasks: ./tests/debug.yml
+
