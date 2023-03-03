@@ -6,8 +6,8 @@ resource "aws_iam_role" "s3-levelupbucket-role" {
 
 #Policy to attach the S3 Bucket Role
 resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
-  name = var.ROLE_POLICY_NAME
-  role = aws_iam_role.s3-levelupbucket-role.id
+  name   = var.ROLE_POLICY_NAME
+  role   = aws_iam_role.s3-levelupbucket-role.id
   policy = file("./policies/s3accesspolicy.json")
 }
 
