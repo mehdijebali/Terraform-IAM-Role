@@ -1,6 +1,6 @@
 data "amazon-ami" "ubuntu" {
   filters = {
-    name                = "ubuntu/images/*ubuntu-xenial-16.04-amd64-server-*"
+    name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
     root-device-type    = "ebs"
     virtualization-type = "hvm"
   }
