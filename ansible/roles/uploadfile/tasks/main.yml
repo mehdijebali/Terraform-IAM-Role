@@ -1,2 +1,30 @@
 ---
 # tasks file for uploadfile
+- name: Install unzip
+  apt:
+    name: unzip
+    state: present
+
+- name: Download awscli installer
+  unarchive:
+    src: "{{awscli_url}}"
+    dest: /tmp
+    remote_src: true
+    creates: /tmp/aws
+    mode: 0755
+- name: Run installer
+  command:
+  args:
+    cmd: /tmp/aws/install
+    creates: /usr/local/bin/aws
+  register: aws_install
+
+- name: Create test file
+  command: echo "test S3 upload" > {{file_name}}
+
+- name: Check awscli version 
+  command: sudo aws --version
+  register: aws_version
+  when: aws_install.changed == true
+- debug:
+    var: aws_version.stdout
