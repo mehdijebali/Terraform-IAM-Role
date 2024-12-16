@@ -2,6 +2,7 @@
 - name: Deploy awscli
   hosts: all
   become: true
+  gather_facts: false
   
   roles:
     - uploadfile
