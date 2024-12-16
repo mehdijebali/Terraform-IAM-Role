@@ -1,5 +1,0 @@
----
-- name: Install unzip
-  apt:
-    name: unzip
-    state: present

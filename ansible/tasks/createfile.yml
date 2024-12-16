@@ -1,3 +1,0 @@
----
-- name: Create test file
-  command: echo "test S3 upload" > {{file_name}}
