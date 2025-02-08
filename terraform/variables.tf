@@ -30,10 +30,6 @@ variable "ROLE_POLICY_NAME" {
   default = "s3-levelupmybucket-role-policy"
 }
 
-variable "S3_BUCKET_NAME" {
-  default = "demo-terraform-bucket-mj"
-}
-
 variable "S3_BUCKET_ACL" {
   default = "private"
 }
