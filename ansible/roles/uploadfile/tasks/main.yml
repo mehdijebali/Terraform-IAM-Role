@@ -12,7 +12,7 @@
 
 - name: Download awscli installer
   ansible.builtin.unarchive:
-    src: "{{awscli_url}}"
+    src: "{{ awscli_url }}"
     dest: /tmp
     remote_src: true
     creates: /tmp/aws
