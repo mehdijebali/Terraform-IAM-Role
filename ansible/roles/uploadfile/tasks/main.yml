@@ -1,35 +1,36 @@
 ---
 # tasks file for uploadfile
 - name: Update apt cache if needed
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
     cache_valid_time: 86400
     
 - name: Install unzip
-  apt:
+  ansible.builtin.apt:
     name: unzip
     state: present
 
 - name: Download awscli installer
-  unarchive:
-    src: "{{awscli_url}}"
+  ansible.builtin.unarchive:
+    src: "{{ awscli_url }}"
     dest: /tmp
     remote_src: true
     creates: /tmp/aws
     mode: 0755
+
 - name: Run installer
-  command:
+  ansible.builtin.command:
   args:
     cmd: /tmp/aws/install
     creates: /usr/local/bin/aws
   register: aws_install
 
 - name: Create test file
-  command: echo "test S3 upload" > {{file_name}}
+  ansible.builtin.command: echo "test S3 upload" > {{file_name}}
 
 - name: Check awscli version 
-  command: sudo aws --version
+  ansible.builtin.command: sudo aws --version
   register: aws_version
   when: aws_install.changed == true
-- debug:
+- ansible.builtin.debug:
     var: aws_version.stdout
