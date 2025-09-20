@@ -1,4 +1,4 @@
 ---
 # vars file for uploadfile
-awscli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
-file_name: myfile.txt
+uploadfile_awscli_url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+uploadfile_file_name: myfile.txt
