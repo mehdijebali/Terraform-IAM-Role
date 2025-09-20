@@ -1,2 +1,6 @@
 ---
 # handlers file for uploadfile
+- name: Get awscli version
+  ansible.builtin.command: sudo aws --version
+  register: uploadfile_aws_version
+  changed_when: false
