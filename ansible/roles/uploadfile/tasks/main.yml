@@ -4,7 +4,7 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 86400
-    
+
 - name: Install unzip
   ansible.builtin.apt:
     name: unzip
@@ -12,25 +12,29 @@
 
 - name: Download awscli installer
   ansible.builtin.unarchive:
-    src: "{{ awscli_url }}"
+    src: "{{ uploadfile_awscli_url }}"
     dest: /tmp
     remote_src: true
     creates: /tmp/aws
-    mode: 0755
+    mode: "0755"
 
 - name: Run installer
   ansible.builtin.command:
   args:
     cmd: /tmp/aws/install
     creates: /usr/local/bin/aws
-  register: aws_install
+  notify:
+    - Get awscli version
+
+- name: Run handlers
+  ansible.builtin.meta: flush_handlers
 
 - name: Create test file
-  ansible.builtin.command: echo "test S3 upload" > {{file_name}}
+  ansible.builtin.copy:
+    content: "test S3 upload"
+    dest: "{{ uploadfile_file_name }}"
+    mode: "0644"
 
-- name: Check awscli version 
-  ansible.builtin.command: sudo aws --version
-  register: aws_version
-  when: aws_install.changed == true
-- ansible.builtin.debug:
-    var: aws_version.stdout
+- name: Check awscli version
+  ansible.builtin.debug:
+    var: uploadfile_aws_version.stdout

@@ -1,5 +1,5 @@
----
-- hosts: localhost
-  remote_user: root
-  roles:
-    - uploadfile
+# ---
+# - hosts: localhost
+#   remote_user: root
+#   roles:
+#     - uploadfile
