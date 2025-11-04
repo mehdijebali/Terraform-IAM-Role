@@ -1,9 +1,4 @@
 
-resource "aws_key_pair" "levelup_key" {
-  key_name = var.KEY_NAME
-  public_key = file(var.PATH_TO_PUBLIC_KEY)
-}
-
 #Security Group for levelupvpc
 resource "aws_security_group" "allow-levelup-ssh" {
   vpc_id      = var.SG_VPC_ID
@@ -17,26 +12,23 @@ resource "aws_security_group" "allow-levelup-ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  ingress {
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-  
   tags = {
     Name = "${var.SG_NAME}"
   }
 }
 
 resource "aws_instance" "MyFirstInstnace" {
-  ami           = var.AMI_ID
-  instance_type = var.INSTANCE_TYPE
-  availability_zone = var.AVAILABILITY_ZONE
-  key_name      = aws_key_pair.levelup_key.key_name
-  iam_instance_profile = var.INSTANCE_PROFILE
+  ami                    = var.AMI_ID
+  instance_type          = var.INSTANCE_TYPE
+  availability_zone      = var.AVAILABILITY_ZONE
+  iam_instance_profile   = var.INSTANCE_PROFILE
   vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
-  
+  monitoring             = true
+  metadata_options {
+    http_tokens                 = "required"
+    http_put_response_hop_limit = 1
+  }
+
   tags = {
     Name = "${var.INSTANCE_NAME}"
   }

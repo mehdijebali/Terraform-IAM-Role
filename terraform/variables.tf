@@ -4,18 +4,6 @@ variable "AWS_REGION" {
   default     = "us-east-1"
 }
 
-variable "KEY_NAME" {
-  type        = string
-  description = "SSH key name"
-  default     = "levelup_key"
-}
-
-variable "PATH_TO_PUBLIC_KEY" {
-  type        = string
-  description = "Path to SSH public key"
-  default     = "levelup_key.pub"
-}
-
 variable "INSTANCE_TYPE" {
   type        = string
   description = "AWS Instance type"

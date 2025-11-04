@@ -6,3 +6,9 @@ resource "aws_s3_bucket" "levelup-s3bucket" {
   tags = local.s3-tags
 }
 
+resource "aws_s3_bucket_versioning" "levelup-s3bucketversioning" {
+  bucket = aws_s3_bucket.levelup-s3bucket.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
