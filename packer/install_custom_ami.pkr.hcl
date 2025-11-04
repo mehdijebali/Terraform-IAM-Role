@@ -1,3 +1,18 @@
+packer {
+  required_version = ">= 1.14.0"
+
+  required_plugins {
+    amazon = {
+      source  = "github.com/hashicorp/amazon"
+      version = ">= 1.2.0"
+    }
+    ansible = {
+      source  = "github.com/hashicorp/ansible"
+      version = ">= 1.1.0"
+    }
+  }
+}
+
 data "amazon-ami" "ubuntu" {
   filters = {
     name                = "ubuntu/images/hvm-ssd/ubuntu-jammy-22.04-amd64-server-*"
@@ -19,13 +34,7 @@ source "amazon-ebs" "ubuntu" {
 
 build {
   sources = ["source.amazon-ebs.ubuntu"]
-
-  provisioner "shell" {
-    inline = ["sudo apt-get update -y"]
-  }
-
   provisioner "ansible" {
     playbook_file = "./ansible/main.yml"
   }
-
 }
