@@ -32,14 +32,19 @@ data "aws_ami" "packer_ami" {
 module "instance" {
   source = "./modules/instance"
 
-  SG_VPC_ID          = data.aws_vpc.default.id
-  SG_NAME            = var.SG_NAME
-  SG_DESCRIPTION     = var.SG_DESCRIPTION
-  AMI_ID             = data.aws_ami.packer_ami.id
-  INSTANCE_TYPE      = var.INSTANCE_TYPE
-  INSTANCE_NAME      = var.INSTANCE_NAME
-  AVAILABILITY_ZONE  = var.AVAILABILITY_ZONE
-  INSTANCE_PROFILE   = aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile.name
+  SG_VPC_ID         = data.aws_vpc.default.id
+  SG_NAME           = var.SG_NAME
+  SG_DESCRIPTION    = var.SG_DESCRIPTION
+  AMI_ID            = data.aws_ami.packer_ami.id
+  INSTANCE_TYPE     = var.INSTANCE_TYPE
+  INSTANCE_NAME     = var.INSTANCE_NAME
+  AVAILABILITY_ZONE = var.AVAILABILITY_ZONE
 
   depends_on = [aws_s3_bucket.levelup-s3bucket]
+}
+
+resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
+  name   = var.ROLE_POLICY_NAME
+  role   = module.instance.ec2_role_name
+  policy = file("./policies/s3accesspolicy.json")
 }

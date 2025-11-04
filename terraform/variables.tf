@@ -37,11 +37,11 @@ variable "INSTANCE_NAME" {
 variable "SG_NAME" {
   type        = string
   description = "Security Group Name"
-  default     = "Allow_SSH"
+  default     = "s3-client-sg"
 }
 
 variable "SG_DESCRIPTION" {
   type        = string
   description = "Security Group Description"
-  default     = "Allow SSH Connection"
+  default     = "Security for s3 client (ec2)"
 }
