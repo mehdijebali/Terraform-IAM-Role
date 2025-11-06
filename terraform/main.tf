@@ -28,14 +28,17 @@ data "aws_ami" "packer_ami" {
     values = ["s3-client-*"]
   }
 }
-
+module "ssm-role" {
+  source = "github.com/mehdijebali/terraform-modules//ssm-role?ref=main"
+}
 module "instance" {
-  source = "./modules/instance"
+  source = "github.com/mehdijebali/terraform-modules//instance?ref=main"
 
   SG_VPC_ID         = data.aws_vpc.default.id
-  SG_NAME           = var.SG_NAME
-  SG_DESCRIPTION    = var.SG_DESCRIPTION
+  USER_DATA = module.ssm-role.user_data
+  INSTANCE_PROFILE_NAME = module.ssm-role.instance_profile_name
   AMI_ID            = data.aws_ami.packer_ami.id
+  INSTANCE_SUBNET_ID = var.INSTANCE_SUBNET_ID
   INSTANCE_TYPE     = var.INSTANCE_TYPE
   INSTANCE_NAME     = var.INSTANCE_NAME
   AVAILABILITY_ZONE = var.AVAILABILITY_ZONE
@@ -45,6 +48,6 @@ module "instance" {
 
 resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
   name   = var.ROLE_POLICY_NAME
-  role   = module.instance.ec2_role_name
+  role   = module.ssm-role.ec2_role_name
   policy = file("./policies/s3accesspolicy.json")
 }
