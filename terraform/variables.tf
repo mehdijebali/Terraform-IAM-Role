@@ -34,6 +34,12 @@ variable "INSTANCE_NAME" {
   default     = "tf_instance"
 }
 
+variable "INSTANCE_SUBNET_ID" {
+  type        = string
+  description = "EC2 Instance Subnet ID"
+  default     = "subnet-04b04399210978637"
+}
+
 variable "SG_NAME" {
   type        = string
   description = "Security Group Name"
