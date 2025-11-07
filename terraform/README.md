@@ -16,14 +16,13 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_instance"></a> [instance](#module\_instance) | ./modules/instance | n/a |
+| <a name="module_instance"></a> [instance](#module\_instance) | github.com/mehdijebali/terraform-modules//instance | v1.0.0 |
+| <a name="module_ssm-role"></a> [ssm-role](#module\_ssm-role) | github.com/mehdijebali/terraform-modules//ssm-role | v1.0.0 |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [aws_iam_instance_profile.s3-levelupbucket-role-instanceprofile](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_instance_profile) | resource |
-| [aws_iam_role.s3-levelupbucket-role](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role) | resource |
 | [aws_iam_role_policy.s3-levelupmybucket-role-policy](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/iam_role_policy) | resource |
 | [aws_s3_bucket.levelup-s3bucket](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket) | resource |
 | [aws_s3_bucket_versioning.levelup-s3bucketversioning](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/s3_bucket_versioning) | resource |
@@ -37,12 +36,9 @@
 | <a name="input_AVAILABILITY_ZONE"></a> [AVAILABILITY\_ZONE](#input\_AVAILABILITY\_ZONE) | Availability Zone where instances is deployed | `string` | `"us-east-1a"` | no |
 | <a name="input_AWS_REGION"></a> [AWS\_REGION](#input\_AWS\_REGION) | The region where resources are deployed | `string` | `"us-east-1"` | no |
 | <a name="input_INSTANCE_NAME"></a> [INSTANCE\_NAME](#input\_INSTANCE\_NAME) | EC2 Instance Name | `string` | `"tf_instance"` | no |
+| <a name="input_INSTANCE_SUBNET_ID"></a> [INSTANCE\_SUBNET\_ID](#input\_INSTANCE\_SUBNET\_ID) | EC2 Instance Subnet ID | `string` | `"subnet-04b04399210978637"` | no |
 | <a name="input_INSTANCE_TYPE"></a> [INSTANCE\_TYPE](#input\_INSTANCE\_TYPE) | AWS Instance type | `string` | `"t2.micro"` | no |
-| <a name="input_LD_NAME"></a> [LD\_NAME](#input\_LD\_NAME) | Linux Distribution Name | `string` | `"centos"` | no |
-| <a name="input_ROLE_NAME"></a> [ROLE\_NAME](#input\_ROLE\_NAME) | S3 Role Name | `string` | `"s3-levelupbucket-role"` | no |
 | <a name="input_ROLE_POLICY_NAME"></a> [ROLE\_POLICY\_NAME](#input\_ROLE\_POLICY\_NAME) | S3 Policy Name | `string` | `"s3-levelupmybucket-role-policy"` | no |
-| <a name="input_SG_DESCRIPTION"></a> [SG\_DESCRIPTION](#input\_SG\_DESCRIPTION) | Security Group Description | `string` | `"Allow SSH Connection"` | no |
-| <a name="input_SG_NAME"></a> [SG\_NAME](#input\_SG\_NAME) | Security Group Name | `string` | `"Allow_SSH"` | no |
 
 ## Outputs
 
