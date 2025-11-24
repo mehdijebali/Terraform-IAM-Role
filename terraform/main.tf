@@ -19,6 +19,14 @@ data "aws_vpc" "default" {
   default = true
 }
 
+data "aws_route_table" "subnet_rtb" {
+  vpc_id = data.aws_vpc.default.id
+  filter {
+    name   = "association.main"
+    values = ["true"]
+  }
+}
+
 data "aws_ami" "packer_ami" {
   most_recent = true
   owners      = ["self"]
@@ -49,5 +57,5 @@ module "instance" {
 resource "aws_iam_role_policy" "s3-levelupmybucket-role-policy" {
   name   = var.ROLE_POLICY_NAME
   role   = module.ssm-role.ec2_role_name
-  policy = file("./policies/s3accesspolicy.json")
+  policy = local.s3_access_policy
 }
